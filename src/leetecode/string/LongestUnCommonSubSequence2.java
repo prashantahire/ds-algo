@@ -25,6 +25,8 @@ public class LongestUnCommonSubSequence2 {
         return maxLen;
     }
 
+    // Time: O(n^2*m)
+    // Space: O(n)
     public int findLUSlength2(String[] strs) {
         Arrays.sort(strs, (s1, s2) -> s2.length()-s1.length());
         Set<String> dups = getDups(strs);
