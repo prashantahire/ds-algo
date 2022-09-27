@@ -4,6 +4,8 @@ import java.util.*;
 public class LongestWordInDictThroughDel {
     int maxLen = 0;
     List<String> ans = new ArrayList<>();
+    //TIme : 2^n
+    // Space: 26^26
     public String findLongestWord(String s, List<String> dictionary) {
         Trie root = buildTree(dictionary);
         dfs(0, s, root);
@@ -58,5 +60,30 @@ public class LongestWordInDictThroughDel {
         public Trie(){
             childrens = new Trie[26];
         }
+    }
+
+    // TIme(m*n)
+    // SPace constant
+    public String findLongestWord2(String s, List<String> dictionary) {
+
+        Collections.sort(dictionary, (s1, s2) -> {
+            if(s1.length() != s2.length())
+                return s2.length()-s1.length();
+            return s1.compareTo(s2);
+        });
+
+        for(String str: dictionary){
+            if(isSubSeq(s, str))
+                return str;
+        }
+        return "";
+    }
+
+    private boolean isSubSeq(String s1, String s2){
+        int j=0;
+        for(int i=0; i<s1.length() && j<s2.length(); i++){
+            if(s1.charAt(i) == s2.charAt(j)) j++;
+        }
+        return j == s2.length();
     }
 }
