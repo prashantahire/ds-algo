@@ -1,6 +1,8 @@
 package leetecode.string;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class LongestWordInDictThroughDel {
     int maxLen = 0;
     List<String> ans = new ArrayList<>();
@@ -85,5 +87,14 @@ public class LongestWordInDictThroughDel {
             if(s1.charAt(i) == s2.charAt(j)) j++;
         }
         return j == s2.length();
+    }
+
+    public static void main(String[] args) {
+        List<Integer> ans = Arrays.asList(1);
+        String a = ans.parallelStream().map(i -> i.toString()).collect(Collectors.joining(","));
+        if(a.equals(""))
+            System.out.println("empty");
+        System.out.println(a);
+
     }
 }
